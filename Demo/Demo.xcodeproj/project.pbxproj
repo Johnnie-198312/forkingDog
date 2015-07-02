@@ -12,7 +12,6 @@
 		488EECC01ADFEDC6004EAA71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 488EECBE1ADFEDC6004EAA71 /* Main.storyboard */; };
 		488EECC21ADFEDC6004EAA71 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 488EECC11ADFEDC6004EAA71 /* Images.xcassets */; };
 		488EECC51ADFEDC6004EAA71 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 488EECC31ADFEDC6004EAA71 /* LaunchScreen.xib */; };
-		488EECDD1ADFEEE1004EAA71 /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 488EECDC1ADFEEE1004EAA71 /* UITableView+FDTemplateLayoutCell.m */; };
 		488EECE01ADFF7A5004EAA71 /* FDFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 488EECDF1ADFF7A5004EAA71 /* FDFeedViewController.m */; };
 		488EECE31ADFF884004EAA71 /* FDFeedEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 488EECE21ADFF884004EAA71 /* FDFeedEntity.m */; };
 		4897E5DD1ADFFBBD00E87B5F /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 4897E5DC1ADFFBBD00E87B5F /* data.json */; };
@@ -29,6 +28,7 @@
 		BE6F74851B44DE63007CD083 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6F747A1B44DE63007CD083 /* View+MASAdditions.m */; };
 		BE6F748A1B450A94007CD083 /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6F74871B450A94007CD083 /* NSArray+Log.m */; };
 		BE6F748B1B450A94007CD083 /* NSDictionary+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6F74891B450A94007CD083 /* NSDictionary+Log.m */; };
+		BE6F74941B451C53007CD083 /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6F74931B451C53007CD083 /* UITableView+FDTemplateLayoutCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,8 +40,6 @@
 		488EECBF1ADFEDC6004EAA71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		488EECC11ADFEDC6004EAA71 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		488EECC41ADFEDC6004EAA71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		488EECDB1ADFEEE1004EAA71 /* UITableView+FDTemplateLayoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCell.h"; sourceTree = "<group>"; };
-		488EECDC1ADFEEE1004EAA71 /* UITableView+FDTemplateLayoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCell.m"; sourceTree = "<group>"; };
 		488EECDE1ADFF7A5004EAA71 /* FDFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDFeedViewController.h; sourceTree = "<group>"; };
 		488EECDF1ADFF7A5004EAA71 /* FDFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDFeedViewController.m; sourceTree = "<group>"; };
 		488EECE11ADFF884004EAA71 /* FDFeedEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDFeedEntity.h; sourceTree = "<group>"; };
@@ -77,6 +75,8 @@
 		BE6F74871B450A94007CD083 /* NSArray+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Log.m"; sourceTree = "<group>"; };
 		BE6F74881B450A94007CD083 /* NSDictionary+Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Log.h"; sourceTree = "<group>"; };
 		BE6F74891B450A94007CD083 /* NSDictionary+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Log.m"; sourceTree = "<group>"; };
+		BE6F74921B451C53007CD083 /* UITableView+FDTemplateLayoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView+FDTemplateLayoutCell.h"; path = "Demo/UITableView+FDTemplateLayoutCell.h"; sourceTree = SOURCE_ROOT; };
+		BE6F74931B451C53007CD083 /* UITableView+FDTemplateLayoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableView+FDTemplateLayoutCell.m"; path = "Demo/UITableView+FDTemplateLayoutCell.m"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,8 +135,8 @@
 		488EECDA1ADFEEE0004EAA71 /* FDTemplateLayoutCell */ = {
 			isa = PBXGroup;
 			children = (
-				488EECDB1ADFEEE1004EAA71 /* UITableView+FDTemplateLayoutCell.h */,
-				488EECDC1ADFEEE1004EAA71 /* UITableView+FDTemplateLayoutCell.m */,
+				BE6F74921B451C53007CD083 /* UITableView+FDTemplateLayoutCell.h */,
+				BE6F74931B451C53007CD083 /* UITableView+FDTemplateLayoutCell.m */,
 			);
 			name = FDTemplateLayoutCell;
 			path = ../../Classes;
@@ -266,7 +266,6 @@
 				BE6F74811B44DE63007CD083 /* MASViewAttribute.m in Sources */,
 				BE6F74831B44DE63007CD083 /* NSArray+MASAdditions.m in Sources */,
 				BE6F748B1B450A94007CD083 /* NSDictionary+Log.m in Sources */,
-				488EECDD1ADFEEE1004EAA71 /* UITableView+FDTemplateLayoutCell.m in Sources */,
 				BE6F74821B44DE63007CD083 /* MASViewConstraint.m in Sources */,
 				BE6F748A1B450A94007CD083 /* NSArray+Log.m in Sources */,
 				BE6F74801B44DE63007CD083 /* MASLayoutConstraint.m in Sources */,
@@ -279,6 +278,7 @@
 				4897E5E01AE090B900E87B5F /* FDFeedCell.m in Sources */,
 				488EECB71ADFEDC6004EAA71 /* main.m in Sources */,
 				488EECE31ADFF884004EAA71 /* FDFeedEntity.m in Sources */,
+				BE6F74941B451C53007CD083 /* UITableView+FDTemplateLayoutCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

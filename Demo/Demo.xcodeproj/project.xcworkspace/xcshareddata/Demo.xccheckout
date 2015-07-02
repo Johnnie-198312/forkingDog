@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>EC9BA3C3-8241-4B36-83FE-E843428F17C1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Demo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>424BA3DBAD0ED5C150EC2FD405798B111A609FE5</key>
+		<string>https://github.com/syljay0508/autoCellHeightDemo.git</string>
+		<key>7CBACA15BFC2144C851F4AB44ABE3E9A0F34BD2D</key>
+		<string>https://github.com/858665536/forkingDog.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Demo/Demo.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>424BA3DBAD0ED5C150EC2FD405798B111A609FE5</key>
+		<string>../../../../autoCellHeightDemo</string>
+		<key>7CBACA15BFC2144C851F4AB44ABE3E9A0F34BD2D</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/858665536/forkingDog.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7CBACA15BFC2144C851F4AB44ABE3E9A0F34BD2D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>424BA3DBAD0ED5C150EC2FD405798B111A609FE5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>autoCellHeightDemo</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7CBACA15BFC2144C851F4AB44ABE3E9A0F34BD2D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>forkingDog</string>
+		</dict>
+	</array>
+</dict>
+</plist>
