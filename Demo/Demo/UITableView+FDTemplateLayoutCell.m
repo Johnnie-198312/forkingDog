@@ -118,7 +118,7 @@ static CGFloat const _FDTemplateLayoutCellHeightCacheAbsentValue = -1;
 
 - (id)fd_templateCellForReuseIdentifier:(NSString *)identifier
 {
-    NSAssert(identifier.length > 0, @"Expects a valid identifier - %@", identifier);
+    NSAssert(identifier.length > 0, @"Expect a valid identifier - %@", identifier);
     
     NSMutableDictionary *templateCellsByIdentifiers = objc_getAssociatedObject(self, _cmd);
     if (!templateCellsByIdentifiers) {
@@ -212,6 +212,7 @@ static CGFloat const _FDTemplateLayoutCellHeightCacheAbsentValue = -1;
         // Remove observer when all precache tasks are done.
         if (mutableIndexPathsToBePrecached.count == 0) {
             CFRunLoopRemoveObserver(runLoop, observer, runLoopMode);
+            CFRelease(observer);
             return;
         }
         // Pop first index path record as this RunLoop iteration's task.
@@ -374,7 +375,8 @@ static CGFloat const _FDTemplateLayoutCellHeightCacheAbsentValue = -1;
     if (self.fd_autoCacheInvalidationEnabled) {
         [self.fd_cellHeightCache buildHeightCachesAtIndexPathsIfNeeded:indexPaths];
         [indexPaths enumerateObjectsUsingBlock:^(NSIndexPath *indexPath, NSUInteger idx, BOOL *stop) {
-            [self.fd_cellHeightCache.sections[indexPath.section] removeObjectAtIndex:indexPath.row];
+            NSMutableArray *rows = self.fd_cellHeightCache.sections[indexPath.section];
+            [rows removeObjectAtIndex:indexPath.row];
         }];
     }
     [self fd_deleteRowsAtIndexPaths:indexPaths withRowAnimation:animation]; // Primary call
@@ -433,11 +435,27 @@ static CGFloat const _FDTemplateLayoutCellHeightCacheAbsentValue = -1;
         configuration(cell);
     }
     
+    CGFloat contentViewWidth = CGRectGetWidth(self.frame);
+
+    // If a cell has accessory view or system accessory type, its content view's width is smaller
+    // than cell's by some fixed value.
+    if (cell.accessoryView) {
+        contentViewWidth -= 16 + CGRectGetWidth(cell.accessoryView.frame);
+    } else {
+        static CGFloat systemAccessoryWidths[] = {
+            [UITableViewCellAccessoryNone] = 0,
+            [UITableViewCellAccessoryDisclosureIndicator] = 34,
+            [UITableViewCellAccessoryDetailDisclosureButton] = 68,
+            [UITableViewCellAccessoryCheckmark] = 40,
+            [UITableViewCellAccessoryDetailButton] = 48
+        };
+        contentViewWidth -= systemAccessoryWidths[cell.accessoryType];
+    }
+    
     CGSize fittingSize = CGSizeZero;
-    
+
     // If auto layout enabled, cell's contentView must have some constraints.
-    BOOL autoLayoutEnabled = cell.contentView.constraints.count > 0 ? YES : NO;
-    
+    BOOL autoLayoutEnabled = cell.contentView.constraints.count > 0 && !cell.fd_enforceFrameLayout;
     if (autoLayoutEnabled) {
         
         // Add a hard width constraint to make dynamic content views (like labels) expand vertically instead
@@ -449,7 +467,7 @@ static CGFloat const _FDTemplateLayoutCellHeightCacheAbsentValue = -1;
                                         toItem:nil
                                      attribute:NSLayoutAttributeNotAnAttribute
                                     multiplier:1.0
-                                      constant:CGRectGetWidth(self.frame)];
+                                      constant:contentViewWidth];
         [cell.contentView addConstraint:tempWidthConstraint];
         // Auto layout engine does its math
         fittingSize = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -461,9 +479,12 @@ static CGFloat const _FDTemplateLayoutCellHeightCacheAbsentValue = -1;
         // This is the same method used in iOS8 self-sizing cell's implementation.
         // Note: fitting height should not include separator view.
         SEL selector = @selector(sizeThatFits:);
+        BOOL inherited = ![cell isMemberOfClass:UITableViewCell.class];
         BOOL overrided = [cell.class instanceMethodForSelector:selector] != [UITableViewCell instanceMethodForSelector:selector];
-        NSAssert(overrided, @"Cell must override '-sizeThatFits:' method if not using auto layout.");
-        fittingSize = [cell sizeThatFits:self.frame.size];
+        if (inherited && !overrided) {
+            NSAssert(NO, @"Customized cell must override '-sizeThatFits:' method if not using auto layout.");
+        }
+        fittingSize = [cell sizeThatFits:CGSizeMake(contentViewWidth, 0)];
     }
     
     // Add 1px extra space for separator line if needed, simulating default UITableViewCell.
@@ -490,6 +511,7 @@ static CGFloat const _FDTemplateLayoutCellHeightCacheAbsentValue = -1;
     if (!self.fd_autoCacheInvalidationEnabled) {
         self.fd_autoCacheInvalidationEnabled = YES;
     }
+    
     // Enable precache if you use this "cacheByIndexPath" API.
     if (!self.fd_precacheEnabled) {
         self.fd_precacheEnabled = YES;
@@ -545,6 +567,16 @@ static CGFloat const _FDTemplateLayoutCellHeightCacheAbsentValue = -1;
 - (void)setFd_isTemplateLayoutCell:(BOOL)isTemplateLayoutCell
 {
     objc_setAssociatedObject(self, @selector(fd_isTemplateLayoutCell), @(isTemplateLayoutCell), OBJC_ASSOCIATION_RETAIN);
+}
+
+- (BOOL)fd_enforceFrameLayout
+{
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
+}
+
+- (void)setFd_enforceFrameLayout:(BOOL)enforceFrameLayout
+{
+    objc_setAssociatedObject(self, @selector(fd_enforceFrameLayout), @(enforceFrameLayout), OBJC_ASSOCIATION_RETAIN);
 }
 
 @end
