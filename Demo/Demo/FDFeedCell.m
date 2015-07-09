@@ -39,6 +39,7 @@
         self.contentLabel = [UILabel new];
         self.contentLabel.numberOfLines = 0;
         self.contentLabel.backgroundColor = [UIColor yellowColor];
+        self.contentLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         
         self.contentImageView = [UIImageView new];
         self.contentImageView.backgroundColor =[UIColor lightGrayColor];
@@ -77,7 +78,7 @@
 }
 -(void)layoutSubviews{
     [super layoutSubviews];
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(16).key(@"这个约束不合格1");
         make.right.equalTo(self.contentView).offset(-10).key(@"这个约束不合格2");
         make.top.equalTo(self.contentView).offset(10).key(@"这个约束不合格3");
@@ -90,7 +91,7 @@
     [self.titleLabel setContentCompressionResistancePriority:750 forAxis:UILayoutConstraintAxisVertical];
     
     
-    [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.contentLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView).offset(-10).key(@"这个约束不合格8");
         make.left.equalTo(self.titleLabel).key(@"这个约束不合格9");
         make.bottom.equalTo(self.contentImageView.mas_top).offset(-8).key(@"这个约束不合格10");
@@ -102,7 +103,7 @@
     [self.contentLabel setContentCompressionResistancePriority:750 forAxis:UILayoutConstraintAxisHorizontal];
     [self.contentLabel setContentCompressionResistancePriority:1000 forAxis:UILayoutConstraintAxisVertical];
     
-    [self.contentImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.contentImageView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.right.lessThanOrEqualTo(self.contentView.mas_right).offset(-16).key(@"这个约束不合格13");
         make.left.equalTo(self.contentLabel).key(@"这个约束不合格14");
         make.bottom.equalTo(self.usernameLabel.mas_top).offset(-8);
@@ -113,7 +114,7 @@
     [self.contentImageView setContentCompressionResistancePriority:750 forAxis:UILayoutConstraintAxisHorizontal];
     [self.contentImageView setContentCompressionResistancePriority:750 forAxis:UILayoutConstraintAxisVertical];
     
-    [self.usernameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.usernameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-4);
         make.left.equalTo(self.titleLabel);
         make.top.equalTo(self.contentImageView.mas_bottom).offset(8);
@@ -125,7 +126,7 @@
     //    [self.usernameLabel setContentCompressionResistancePriority:750 forAxis:UILayoutConstraintAxisHorizontal];
     //    [self.usernameLabel setContentCompressionResistancePriority:1000 forAxis:UILayoutConstraintAxisVertical];
     
-    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.timeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView).offset(-10);
         make.baseline.equalTo(self.usernameLabel);
     }];
@@ -133,6 +134,7 @@
     //        [self.timeLabel setContentHuggingPriority:251 forAxis:UILayoutConstraintAxisVertical];
     //        [self.timeLabel setContentCompressionResistancePriority:750 forAxis:UILayoutConstraintAxisHorizontal];
     //        [self.timeLabel setContentCompressionResistancePriority:750 forAxis:UILayoutConstraintAxisVertical];
+    
     [super layoutSubviews];
     
 }
