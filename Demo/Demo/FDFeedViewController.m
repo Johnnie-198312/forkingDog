@@ -10,7 +10,7 @@
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "FDFeedEntity.h"
 #import "FDFeedCell.h"
-
+#import "Masonry/Masonry.h"
 @interface FDFeedViewController () <UIActionSheetDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, copy) NSArray *prototypeEntitiesFromJSON;
@@ -29,8 +29,12 @@
     
     //去掉系统自带分割线
 //    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self.view addSubview:_tableView];
-  
+    [self.view addSubview:self.tableView];
+    
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     

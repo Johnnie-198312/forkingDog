@@ -76,7 +76,7 @@
     [self.contentView layoutIfNeeded];
 }
 -(void)layoutSubviews{
-    
+    [super layoutSubviews];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(16).key(@"这个约束不合格1");
         make.right.equalTo(self.contentView).offset(-10).key(@"这个约束不合格2");
@@ -133,6 +133,7 @@
     //        [self.timeLabel setContentHuggingPriority:251 forAxis:UILayoutConstraintAxisVertical];
     //        [self.timeLabel setContentCompressionResistancePriority:750 forAxis:UILayoutConstraintAxisHorizontal];
     //        [self.timeLabel setContentCompressionResistancePriority:750 forAxis:UILayoutConstraintAxisVertical];
+    [super layoutSubviews];
     
 }
 
